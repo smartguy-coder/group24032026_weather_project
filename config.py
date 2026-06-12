@@ -8,3 +8,5 @@ if DEBUG == '1':
     DEBUG = True
 else:
     DEBUG = False
+
+OPENWEATHERMAP_APPID = os.getenv('OPENWEATHERMAP_APPID')
