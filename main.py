@@ -16,7 +16,9 @@ def main():
         ]
     )
     weather_info = utils.get_weather_info(data['city'])
-    print(weather_info)
+
+    utils.send_email(recipients=[data['email']], mail_body='test body', mail_subject='test subject')
+
     run_js("""
        setTimeout(
           () => {window.location.reload();},
