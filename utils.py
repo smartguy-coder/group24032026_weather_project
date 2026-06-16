@@ -9,6 +9,9 @@ from email.mime.text import MIMEText
 
 import config
 import jinja2
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def get_weather_info(city: str) -> dict:
@@ -91,6 +94,9 @@ def send_email(
     TOKEN = config.TOKEN_UKR_NET
     USER = config.USER_UKR_NET
     SMTP_SERVER = config.SMTP_SERVER
+    logger.error(TOKEN)
+    logger.error(USER)
+
 
     msg = MIMEMultipart('alternative')
     msg['Subject'] = mail_subject
