@@ -1,6 +1,5 @@
 import constants
 import requests
-import config
 import os
 import smtplib
 from email import encoders
@@ -72,6 +71,15 @@ def get_weather_info(city: str) -> dict:
         'description': response_json['weather'][0]['description']
     }
     return result
+
+
+def create_weather_report(data: dict) -> str:
+    template_loader = jinja2.FileSystemLoader(searchpath='./')
+    template_env = jinja2.Environment(loader=template_loader)
+    template_file = 'templates/weather.html'
+    template = template_env.get_template(template_file)
+    output = template.render(data)
+    return output
 
 
 def send_email(
