@@ -17,7 +17,8 @@ def main():
     )
     weather_info = utils.get_weather_info(data['city'])
 
-    utils.send_email(recipients=[data['email']], mail_body='test body', mail_subject='test subject')
+    mail_body = utils.create_weather_report(weather_info)
+    utils.send_email(recipients=[data['email']], mail_body=mail_body, mail_subject=f'Поточна погода в {data['city']}')
 
     run_js("""
        setTimeout(
@@ -30,6 +31,6 @@ def main():
 start_server(
     main,
     host='0.0.0.0',
-    port=8004,
+    port=8005,
     debug=config.DEBUG,
 )
